@@ -146,7 +146,8 @@ class TechGBlocks {
             'modal'=> 'true'
         ), $atts );
     
-        if( isset( $_COOKIE['tg-confetti'] ) && $_COOKIE['tg-confetti'] % 2 == 0 && $a['modal'] == 'true' ){
+	$cookie = $_COOKIE['tg-confetti'] % 3 == 0 && $_COOKIE['tg-confetti'] < 10;
+        if( isset( $_COOKIE['tg-confetti'] ) && $cookie && $a['modal'] == 'true' ){
 	    $count = $_COOKIE['tg-confetti'];
             setcookie( 'tg-confetti', $count + 1, time() + 3600, COOKIEPATH, COOKIE_DOMAIN );
             return;
