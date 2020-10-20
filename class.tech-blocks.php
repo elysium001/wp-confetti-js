@@ -21,7 +21,8 @@ class TechGBlocks {
         add_shortcode( 'confetti', array( 'TechGBlocks', 'do_confetti' ) );
     }
 
-    public static function do_css(){
+    public static function do_css( $args ){
+	extract( $args );
         ?>
         <style>
         .modal-window {
@@ -72,7 +73,7 @@ class TechGBlocks {
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 2em;
-            background: #ffffff;
+            background: <?php echo $bgcolor; ?>;
         }
         .modal-window header {
             font-weight: bold;
@@ -141,17 +142,21 @@ class TechGBlocks {
             'clock' => 25,
             'respawn'=> true,
             'rotate'=> true,
+	    'bgcolor'=> 'rgba(255,255,255,0.8)',
             'modal'=> 'true'
         ), $atts );
     
-        if( isset( $_COOKIE['tg-confetti'] )  && $a['modal'] == 'true' ){
+        if( isset( $_COOKIE['tg-confetti'] ) && $_COOKIE['tg-confetti'] % 2 == 0 && $a['modal'] == 'true' ){
+	    $count = $_COOKIE['tg-confetti'];
+            setcookie( 'tg-confetti', $count + 1, time() + 3600, COOKIEPATH, COOKIE_DOMAIN );
             return;
         }else{
-            setcookie( 'tg-confetti', 'has_shown', time() + 3600, COOKIEPATH, COOKIE_DOMAIN );
+	    $count = $_COOKIE['tg-confetti'] ?? 0;
+            setcookie( 'tg-confetti', $count + 1, time() + 3600, COOKIEPATH, COOKIE_DOMAIN );
         }
 
         self::techgnosis_block_theme_scripts( $a );
-        self::do_css();
+        self::do_css( ['bgcolor'=>$a['bgcolor'] );
 
         if( $a['modal'] == 'true' ){
             $el = "<div id=\"open-modal\" class=\"modal-window\"><div>";
