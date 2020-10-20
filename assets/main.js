@@ -23,7 +23,7 @@
         if(tgObj.svg){
             confettiSettings.props.push({ 
                 type: "svg", 
-                src: "/wp-content/plugins/techgnosis-confetti/svgs/"+tgObj.svg,
+                src: tgObj.svg,
                 weight: 1, 
                 size: 20
             });
