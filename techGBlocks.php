@@ -6,7 +6,7 @@
 Plugin Name: TechGnosis-confetti
 Plugin URI: https://webtechgnosis.com/
 Description: Provides a simple shortcode for the Confetti-js library.
-Version: 1.0.0
+Version: 1.0.5
 Author: Techgnosis
 Author URI: https://webtechgnosis.com/
 License: GPLv2 or later
