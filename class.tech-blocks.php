@@ -156,7 +156,10 @@ class TechGBlocks {
         }
 
         self::techgnosis_block_theme_scripts( $a );
-        self::do_css( ['bgcolor'=>$a['bgcolor'] );
+	$css = [
+	    'bgcolor'=>$a['bgcolor'] 
+	];
+        self::do_css( $css );
 
         if( $a['modal'] == 'true' ){
             $el = "<div id=\"open-modal\" class=\"modal-window\"><div>";
